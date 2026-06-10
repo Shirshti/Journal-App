@@ -1,6 +1,7 @@
 package com.shrii.journalApp.Controller;
 
 
+import com.shrii.journalApp.DTO.LoginDTO;
 import com.shrii.journalApp.Entity.User;
 import com.shrii.journalApp.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,8 @@ public class UserController {
     UserService userService;
 
     @PostMapping("/login")
-    public String loginUser(@RequestBody User user){
-       return userService.loginUsername(user.getUsername(),user.getPassword());
+    public String loginUser(@RequestBody LoginDTO loginRequest){
+       return userService.loginUsername(loginRequest.getUsername(),loginRequest.getPassword());
     }
 
     @PostMapping("/register")

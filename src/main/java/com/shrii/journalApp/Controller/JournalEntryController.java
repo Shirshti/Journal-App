@@ -1,7 +1,10 @@
 package com.shrii.journalApp.Controller;
 
+import com.shrii.journalApp.DTO.JournalEntryRequestDTO;
+import com.shrii.journalApp.DTO.JournalEntryResponseDTO;
 import com.shrii.journalApp.Entity.JournalEntry;
 import com.shrii.journalApp.Service.JournalEntryService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +25,7 @@ public class JournalEntryController {
 
 
     @PostMapping
-    public boolean createEntry(@RequestBody JournalEntry myEntry){
+    public boolean createEntry(@Valid @RequestBody JournalEntryRequestDTO myEntry){
         entryService.saveEntry(myEntry);
         return true;
     }
@@ -35,7 +38,7 @@ public class JournalEntryController {
 
 
     @GetMapping("id/{id}")
-    public JournalEntry getJournalEntryById(@PathVariable String id){
+    public JournalEntryResponseDTO getJournalEntryById(@PathVariable String id){
         return entryService.getEntryById(id);
     }
 

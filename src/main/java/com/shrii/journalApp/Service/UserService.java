@@ -10,6 +10,8 @@ public class UserService {
     @Autowired
     UserRepo repo;
 
+    @Autowired
+    JwtService jwtService;
     public User getByUsername(String username){
        return repo.findByUsername(username);
     }
@@ -19,7 +21,7 @@ public class UserService {
 
         else{
             if(user.getPassword().equals(password)){
-                return "Login Success";
+                return jwtService.generateToken(username);
             }
             else{
                 return "Wrong Password";
